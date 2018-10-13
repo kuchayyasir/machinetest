@@ -2,7 +2,7 @@ const env = {
   database: 'machine_test',
   username: 'yasir_kuchay',
   password: 'asdfghjkl',
-  host: 'db4free.net',
+  host: 'localhost',
   dialect: 'mysql',
   pool: {
 	  max: 5,
