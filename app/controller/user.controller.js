@@ -49,10 +49,15 @@ exports.update = (req, res) => {
 	const { error } = validateUser(req.body);
 	if (error) return res.status(400).send(error.details[0].message);	
 	const id = req.params.userid;
-	User.update( { fullname: req.body.fullname, email: req.body.email, password: req.body.password,profile_pic: req.body.profile_pic  }, 
+		User.update( { fullname: req.body.fullname, email: req.body.email, password: req.body.password,profile_pic: req.body.profile_pic  }, 
 					 { where: {id: req.params.userid} }
-				   ).then(() => {
-					 res.status(200).send("updated successfully a User with id = " + id);
+				   ).then((User) => {
+					var UserData= _.pick(User, ['fullname', 'email', 'profile_pic']);
+					const UserObject={	status:true,
+						message:'Profile data updated ',
+						data:UserData
+						}
+					 res.status(200).send(UserObject);
 				   });
 };
  
